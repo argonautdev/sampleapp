@@ -1,13 +1,17 @@
 name: "Build and deploy image"
 
 on:
-  [push]
-  # push:
-  #   tags:
-  #     - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
-  # pull_request:
-  #   tags:
-  #     - "v*"
+  push:
+    branches:
+      - master
+      - main
+# on:
+#   push:
+#     tags:
+#       - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+#   pull_request:
+#     tags:
+#       - "v*"
 
 jobs:
   # This workflow contains a single job called "build"
@@ -36,8 +40,9 @@ jobs:
           file: ./Dockerfile
           #   platforms: linux/amd64,linux/arm64,linux/386
           push: true
-          tags: ghcr.io/argonautdev/sampleimage:latest
+          tags: ghcr.io/argonautdev/sampleapp:latest
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/argonautdev/ci:latest
