@@ -48,4 +48,4 @@ jobs:
       image: ghcr.io/argonautdev/ci:latest
     steps:
       - name: Deploy art
-        run: art app deploy -k $AWS_ID -v $AWS_SECRET -f .art/art.yaml -i nginx -t latest -p $CR_PAT
+        run: art app deploy -k $AWS_ACCESS_KEY_ID -v $AWS_SECRET_ACCESS_KEY -f .art/art.yaml -i nginx -t latest -p $CR_PAT
