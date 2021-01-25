@@ -47,5 +47,7 @@ jobs:
     container:
       image: ghcr.io/argonautdev/ci:latest
     steps:
+      - name: State
+        run: env
       - name: Deploy art
-        run: art app deploy -k $AWS_ACCESS_KEY_ID -v $AWS_SECRET_ACCESS_KEY -f .art/art.yaml -i nginx -t latest
+        run: art app deploy -k $AWS_ACCESS_KEY_ID -v $AWS_SECRET_ACCESS_KEY -f .art/art.yaml -i nginx -t latest -p $CR_PAT
