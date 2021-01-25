@@ -1,12 +1,13 @@
 name: "Build and deploy image"
 
-# on:
-#   push:
-#     tags:
-#       - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
-#   pull_request:
-#     tags:
-#       - "v*"
+on:
+  [push]
+  # push:
+  #   tags:
+  #     - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+  # pull_request:
+  #   tags:
+  #     - "v*"
 
 jobs:
   # This workflow contains a single job called "build"
