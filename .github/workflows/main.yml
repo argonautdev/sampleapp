@@ -47,6 +47,8 @@ jobs:
     container:
       image: ghcr.io/argonautdev/ci:latest
     steps:
+      - name: get location of files
+        run: ls **
       - name: Deploy art
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
