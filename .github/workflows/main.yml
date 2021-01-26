@@ -49,13 +49,6 @@ jobs:
     steps:
       - name: Fetch repo
         uses: actions/checkout@v2
-      - name: get location of files
-        run: |
-          pwd
-          ls -al .*
-          ls -al sampleapp/*
-          ls -al sampleapp/.art
-
       - name: Deploy art
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
