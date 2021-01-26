@@ -47,6 +47,8 @@ jobs:
     container:
       image: ghcr.io/argonautdev/ci:latest
     steps:
+      - name: Fetch repo
+        uses: actions/checkout@v2
       - name: get location of files
         run: |
           pwd
