@@ -51,7 +51,6 @@ jobs:
         run: |
           pwd
           ls -al .*
-          ls -al .art
           ls -al sampleapp/*
           ls -al sampleapp/.art
 
