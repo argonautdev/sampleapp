@@ -50,7 +50,8 @@ jobs:
       - name: get location of files
         run: |
           pwd
-          ls .*
+          ls -al .*
+          ls .art
 
       - name: Deploy art
         env:
