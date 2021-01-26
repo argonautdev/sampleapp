@@ -15,7 +15,8 @@ argonaut:
   imageRegistry: ghcr.io # corresponding to the image that is to be deployed
 
 image: "nginx"
-imageTag: "latest"
+imageTag: "1.19"
+# imageTag: "latest"
 
 replicas: 1
 minReplicas: 1
