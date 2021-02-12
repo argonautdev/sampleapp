@@ -192,7 +192,7 @@ An example `art.yaml` file is given below
 ```yaml
 ---
 version: "v1"
-appName: "nginx"
+appName: "nginx-deployment"
 env: "dev"
 host: "app.tritonhq.io"
 
@@ -200,11 +200,8 @@ argonaut:
   cloudProvider: aws
   cloudRegion: us-east-2
   cloudCluster: argonaut
-  # artDir: .art
-  # artFile: art.yaml
-  artDirGitURL: "https://github.com/argonautdev/art/" # Git URL that contains a ".art" folder which contains this "art.yaml" file
-  gitBranch: main
   imageRegistry: ghcr.io # corresponding to the image that is to be deployed
+  serviceType: "stateless" # One of {stateful, stateless, external}
 
 image: "nginx"
 imageTag: "latest"
@@ -217,14 +214,9 @@ resources:
   requests:
     cpu: "100m"
     memory: "200M"
-  # limits:
-  #   cpu: "200m"
-  #   memory: "256M"
-
-persistentStorage: # Set to [] if no persistent storage is required
-  - capacity: "600M"
-    mountPath: "/usr/share/appdata"
-    accessMode: "ReadWriteOnce" # ReadWriteOnce and ReadOnlyMany are supported
+  limits:
+    cpu: "200m"
+    memory: "256M"
 
 # entrypoint: ["echo"] # overrides
 # cmd: ["Hello World"] # overrides
@@ -237,15 +229,15 @@ services:
       enabled: true
       tls: "" # "terminated" or "" (not applicable) or "passthrough"
       port: 80
-      path: "/" # prefix regex match
-  # - name: "443" # appname will be prefixed, needs to be unique
-  #   protocol: tls # http, tls, tcp
-  #   port: 443 # number only
-  #   ingress:
-  #     enabled: true
-  #     tls: "terminated" # "terminated" or "" (not applicable) or "passthrough"
-  #     port: 80
-  #     path: "/" # prefix regex match
+      path: "/nginx" # prefix regex match
+#   - name: "443" # appname will be prefixed, needs to be unique
+#     protocol: tls # http, tls, tcp
+#     port: 443 # number only
+#     ingress:
+#       enabled: true
+#       tls: "terminated" # "terminated" or "" (not applicable) or "passthrough"
+#       port: 80
+#       path: "/" # prefix regex match
 
 # Can only do one of the httpGet and exec handler methods for livenessProbe
 livenessProbe:
